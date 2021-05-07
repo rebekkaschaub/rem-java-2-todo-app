@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ToDoRepository {
@@ -17,6 +18,26 @@ public class ToDoRepository {
     }
 
     public List<ToDo> listToDos() {
+
         return toDoList;
+    }
+
+
+    public Optional<ToDo> findById(String id){
+       for(ToDo todo : toDoList){
+           if(todo.getId().equals(id)){
+               return Optional.of(todo);
+           }
+       }
+        return Optional.empty();
+    }
+
+    public Optional<ToDo> deleteToDo(String id) {
+        Optional<ToDo> optionalToDo = findById(id);
+        if(findById(id).isPresent()){
+            toDoList.remove(optionalToDo.get());
+            return optionalToDo;
+        }
+        return Optional.empty();
     }
 }
