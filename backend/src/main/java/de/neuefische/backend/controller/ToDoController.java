@@ -35,4 +35,9 @@ public class ToDoController {
         return toDoService.deleteToDo(id);
 
     }
+
+    @PutMapping("{id}")
+    public ToDo advanceToDoStatus(@PathVariable String id){
+        return toDoService.advanceToDoStatus(id);
+    }
 }

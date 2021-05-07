@@ -38,4 +38,27 @@ public class ToDoService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo does not exist.");
     }
 
+    public ToDo advanceToDoStatus(String id) {
+        Optional<ToDo> advancedToDo = toDoRepository.findById(id);
+        if(advancedToDo.isPresent()){
+            return updateStatus(advancedToDo.get());
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo does not exist.");
+    }
+
+    private ToDo updateStatus(ToDo advancedToDo) {
+        String statusOfToDo = advancedToDo.getStatus();
+        switch (statusOfToDo){
+            case "OPEN":
+                advancedToDo.setStatus("IN_PROGRESS");
+                break;
+            case "IN_PROGRESS":
+                advancedToDo.setStatus("DONE");
+                break;
+            default : break;
+
+        }
+        return advancedToDo;
+    }
+
 }
