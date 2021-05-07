@@ -1,0 +1,22 @@
+package de.neuefische.backend.service;
+
+import de.neuefische.backend.model.ToDo;
+import de.neuefische.backend.repository.ToDoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ToDoService {
+    private final ToDoRepository toDoRepository;
+
+    @Autowired
+    public ToDoService(ToDoRepository toDoRepository){
+        this.toDoRepository = toDoRepository;
+    }
+
+    public ToDo addToDo(ToDo newToDo){
+        //newToDo.setId("1");
+
+        return toDoRepository.addToDo(newToDo);
+    }
+}
