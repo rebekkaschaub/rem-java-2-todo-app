@@ -5,6 +5,8 @@ import de.neuefische.backend.repository.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ToDoService {
     private final ToDoRepository toDoRepository;
@@ -18,5 +20,9 @@ public class ToDoService {
         //newToDo.setId("1");
 
         return toDoRepository.addToDo(newToDo);
+    }
+
+    public List<ToDo> listToDos() {
+        return toDoRepository.listToDos();
     }
 }

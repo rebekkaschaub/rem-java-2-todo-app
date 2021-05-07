@@ -15,4 +15,8 @@ public class ToDoRepository {
         toDoList.add(newToDo);
         return newToDo;
     }
+
+    public List<ToDo> listToDos() {
+        return toDoList;
+    }
 }
