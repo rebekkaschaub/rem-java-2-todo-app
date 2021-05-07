@@ -2,6 +2,7 @@ package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.ToDo;
 import de.neuefische.backend.repository.ToDoRepository;
+import de.neuefische.backend.utils.UtilId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class ToDoService {
     }
 
     public ToDo addToDo(ToDo newToDo){
-        //newToDo.setId("1");
+        newToDo.setId(new UtilId().generateId());
 
         return toDoRepository.addToDo(newToDo);
     }
